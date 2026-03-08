@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перехід до магазину...</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f4f4f9; text-align: center; }
+        .container { padding: 20px; max-width: 400px; }
+        .instruction { display: none; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .instruction img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
+        .btn { display: inline-block; padding: 15px 30px; background: #ff0050; color: white; text-decoration: none; border-radius: 30px; font-weight: bold; margin-top: 20px; }
+        .arrow-up { font-size: 40px; color: #ff0050; position: absolute; top: 10px; right: 20px; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="tiktok-notice" class="instruction">
+        <div class="arrow-up">↗️</div>
+        <h2>Майже готово!</h2>
+        <p>Щоб перейти до магазину, натисніть на <b>три крапки</b> (або стрілку) вгорі та виберіть:</p>
+        <p style="font-size: 1.2em; color: #ff0050;"><b>"Відкрити у браузері"</b></p>
+        <p>(Open in Browser)</p>
+    </div>
+
+    <div id="normal-browser" style="display: none;">
+        <h1>Вітаємо!</h1>
+        <p>Натисніть кнопку нижче, щоб перейти до покупок.</p>
+        <a href="https://t.me/+XBZ9wifxqug2YTVi" class="btn">ПЕРЕЙТИ В МАГАЗИН</a>
+    </div>
+</div>
+
+<script>
+    function isInAppBrowser() {
+        const ua = navigator.userAgent || navigator.vendor || window.opera;
+        return (ua.indexOf("TikTok") > -1 || ua.indexOf("FBAN") > -1 || ua.indexOf("Messenger") > -1 || ua.indexOf("Instagram") > -1);
+    }
+
+    if (isInAppBrowser()) {
+        document.getElementById('tiktok-notice').style.display = 'block';
+        document.querySelector('.arrow-up').style.display = 'block';
+    } else {
+        document.getElementById('normal-browser').style.display = 'block';
+        // Опціонально: автоматичний редірект, якщо це не TikTok
+        // window.location.href = "https://t.me/+XBZ9wifxqug2YTVi";
+    }
+</script>
+
+</body>
+</html>
