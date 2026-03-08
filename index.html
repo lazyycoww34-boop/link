@@ -2,49 +2,134 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Перехід до магазину...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aisha Socuty</title>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f4f4f9; text-align: center; }
-        .container { padding: 20px; max-width: 400px; }
-        .instruction { display: none; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .instruction img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
-        .btn { display: inline-block; padding: 15px 30px; background: #ff0050; color: white; text-decoration: none; border-radius: 30px; font-weight: bold; margin-top: 20px; }
-        .arrow-up { font-size: 40px; color: #ff0050; position: absolute; top: 10px; right: 20px; display: none; }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Центруємо весь контент */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: left;
+            position: relative;
+        }
+
+        .content {
+            z-index: 2;
+        }
+
+        /* Стилізація тексту як на скріншоті */
+        h1 {
+            font-size: 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 10px 0;
+            color: #000;
+            letter-spacing: -1px;
+        }
+
+        /* Імітація меню, що випадає (пункт 2) */
+        .menu-mockup {
+            margin-top: 30px;
+            text-align: left;
+            width: 250px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #000;
+            font-weight: 500;
+        }
+
+        .menu-item img {
+            width: 20px;
+            margin-right: 10px;
+            opacity: 0.7;
+        }
+
+        /* Малюємо вигнуту стрілку */
+        .arrow {
+            position: absolute;
+            top: 50px; /* Приблизно де знаходяться три крапки в ТТ */
+            right: 40px;
+            width: 120px;
+            transform: rotate(-10deg);
+            z-index: 1;
+        }
+
+        /* Ховаємо контент для звичайних браузерів */
+        #normal-browser {
+            display: none;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div id="tiktok-notice" class="instruction">
-        <div class="arrow-up">↗️</div>
-        <h2>Майже готово!</h2>
-        <p>Щоб перейти до магазину, натисніть на <b>три крапки</b> (або стрілку) вгорі та виберіть:</p>
-        <p style="font-size: 1.2em; color: #ff0050;"><b>"Відкрити у браузері"</b></p>
-        <p>(Open in Browser)</p>
-    </div>
+<div class="wrapper" id="tiktok-notice" style="display: none;">
+    <svg class="arrow" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 90C40 80 70 50 85 10" stroke="black" stroke-width="3" stroke-linecap="round"/>
+        <path d="M75 15L85 10L88 22" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
 
-    <div id="normal-browser" style="display: none;">
-        <h1>Вітаємо!</h1>
-        <p>Натисніть кнопку нижче, щоб перейти до покупок.</p>
-        <a href="https://t.me/+XBZ9wifxqug2YTVi" class="btn">ПЕРЕЙТИ В МАГАЗИН</a>
+    <div class="content">
+        <h1>1. Натисни на •••</h1>
+        
+        <div class="menu-mockup">
+            <div class="menu-item" style="opacity: 0.4;">🚩 Поскаржитися</div>
+            <h1>2. <span style="font-size: 32px;">🧭</span> Open in browser</h1>
+            <div class="menu-item" style="opacity: 0.4;">🔗 Копіювати посилання</div>
+        </div>
     </div>
 </div>
 
-<script>
-    function isInAppBrowser() {
-        const ua = navigator.userAgent || navigator.vendor || window.opera;
-        return (ua.indexOf("TikTok") > -1 || ua.indexOf("FBAN") > -1 || ua.indexOf("Messenger") > -1 || ua.indexOf("Instagram") > -1);
-    }
+<div class="wrapper" id="normal-browser">
+    <h1>Welcome!</h1>
+    <p>Ви перейшли у зовнішній браузер.</p>
+    <a href="https://t.me/+XBZ9wifxqug2YTVi" class="btn">GO TO SHOP</a>
+</div>
 
-    if (isInAppBrowser()) {
-        document.getElementById('tiktok-notice').style.display = 'block';
-        document.querySelector('.arrow-up').style.display = 'block';
-    } else {
-        document.getElementById('normal-browser').style.display = 'block';
-        // Опціонально: автоматичний редірект, якщо це не TikTok
-        // window.location.href = "https://t.me/+XBZ9wifxqug2YTVi";
+<script>
+    function checkBrowser() {
+        const ua = navigator.userAgent || navigator.vendor || window.opera;
+        const isTikTok = ua.indexOf("TikTok") > -1;
+
+        if (isTikTok) {
+            document.getElementById('tiktok-notice').style.display = 'flex';
+        } else {
+            // Якщо це не TikTok, показуємо кнопку або робимо редірект
+            document.getElementById('normal-browser').style.display = 'flex';
+            // Можна розкоментувати рядок нижче для авто-переходу:
+            // window.location.href = "https://t.me/+XBZ9wifxqug2YTVi";
+        }
     }
+    checkBrowser();
 </script>
 
 </body>
