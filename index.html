@@ -3,120 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Перехід до сайту...</title>
+    <title>Redirecting...</title>
     
     <script>
-        // === НАЛАШТУВАННЯ ===
-        // Вставте сюди ваше кінцеве посилання (куди має потрапити користувач)
-        const destinationUrl = "https://t.me/+XBZ9wifxqug2YTVi";
+        const destinationUrl = "https://ВАШЕ_ПОСИЛАННЯ_ТУТ.com"; // ЗАМІНІТЬ ЦЕ
 
-        function checkAndRedirect() {
+        function detectEnvironment() {
             const ua = navigator.userAgent || navigator.vendor || window.opera;
-            
-            // Перевіряємо, чи це вбудований браузер соцмереж
-            const isInsideApp = (
-                ua.indexOf('Instagram') > -1 || 
-                ua.indexOf('FBAN') > -1 || 
-                ua.indexOf('FBAV') > -1 || 
-                ua.indexOf('TikTok') > -1 ||
-                ua.indexOf('Messenger') > -1
-            );
+            const isTikTok = ua.toLowerCase().indexOf('tiktok') > -1 || ua.toLowerCase().indexOf('musical_ly') > -1;
+            const isInstagram = ua.indexOf('Instagram') > -1 || ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1;
 
-            // Якщо користувач вже у звичайному браузері (не в додатку) — миттєво редиректимо
-            if (!isInsideApp) {
+            // Якщо ми НЕ в додатку (тобто вже у браузері) - редиректимо
+            if (!isTikTok && !isInstagram) {
                 window.location.replace(destinationUrl);
             }
         }
 
-        // Запускаємо перевірку відразу при завантаженні
-        checkAndRedirect();
+        // Запускаємо перевірку
+        window.onload = detectEnvironment;
     </script>
 
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0; padding: 0;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto;
             background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            color: #000;
-            overflow: hidden;
+            display: flex; flex-direction: column; align-items: center;
+            height: 100vh; color: #000; overflow: hidden;
         }
 
-        /* Верхня панель браузера */
         .header {
-            width: 100%;
-            padding: 15px 0;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 14px;
-            color: #8e8e8e;
+            width: 100%; padding: 15px 0;
+            display: flex; justify-content: space-around; align-items: center;
+            border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #8e8e8e;
         }
 
         .content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding-top: 80px;
-            width: 90%;
-            max-width: 400px;
-            position: relative;
+            flex-grow: 1; display: flex; flex-direction: column;
+            padding-top: 60px; width: 90%; max-width: 400px; position: relative;
         }
 
-        h1 {
-            font-size: 26px;
-            font-weight: 900;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
-
-        .menu-mockup {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-        }
+        h1 { font-size: 24px; font-weight: 900; margin-bottom: 30px; text-transform: uppercase; }
 
         .menu-item {
-            display: flex;
-            align-items: center;
-            padding: 18px 0;
-            font-size: 18px;
-            border-bottom: 1px solid #f2f2f2;
+            display: flex; align-items: center; padding: 18px 0;
+            font-size: 17px; border-bottom: 1px solid #f2f2f2;
         }
 
-        .icon {
-            margin-right: 15px;
-            width: 24px;
-            text-align: center;
-            font-size: 20px;
-        }
+        .icon { margin-right: 15px; width: 24px; text-align: center; }
 
-        /* Стрілка вгору */
         .arrow-svg {
-            position: absolute;
-            right: -10px;
-            top: 40px;
-            width: 110px;
-            transform: rotate(-5deg);
+            position: absolute; right: 5px; top: 20px;
+            width: 100px; transform: rotate(-5deg);
         }
 
-        .dots {
-            font-size: 22px;
-            letter-spacing: 1px;
+        /* Додаткова кнопка для TikTok, якщо редирект не спрацював */
+        .fallback-btn {
+            margin-top: 40px;
+            padding: 15px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
             font-weight: bold;
-        }
-
-        .highlight {
-            color: #000;
-            font-weight: 700;
+            display: block;
         }
     </style>
 </head>
@@ -124,9 +75,8 @@
 
     <div class="header">
         <span style="font-size: 20px;">&lsaquo;</span>
-        <span style="font-size: 20px;">&times;</span>
-        <span id="display-url">site-entry.com</span>
-        <span class="dots">•••</span>
+        <span id="domain-text">Loading...</span>
+        <span style="font-size: 20px;">•••</span>
     </div>
 
     <div class="content">
@@ -135,25 +85,20 @@
             <path d="M72 22L88 18L92 34" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
 
-        <h1>1. CLICK ON <span class="dots">•••</span></h1>
+        <h1>1. Клікни на •••</h1>
         
-        <div class="menu-mockup">
-            <div class="menu-item" style="color: #bcbcbc;">
-                <span class="icon">🏳</span> Report
-            </div>
-            <div class="menu-item" style="font-weight: 700;">
-                <span class="icon">🧭</span> 2. Open in browser
-            </div>
-            <div class="menu-item" style="color: #bcbcbc;">
-                <span class="icon">🔗</span> Copy link
-            </div>
+        <div class="menu-item" style="color: #ccc;">
+            <span class="icon">🏳</span> Скарга
         </div>
+        <div class="menu-item" style="font-weight: 700;">
+            <span class="icon">🧭</span> 2. Відкрити в браузері
+        </div>
+        
+        <a href="#" onclick="window.location.reload();" class="fallback-btn">Оновити сторінку</a>
     </div>
 
     <script>
-        // Автоматично підставляємо назву вашого домену в шапку для реалістичності
-        document.getElementById('display-url').innerText = window.location.hostname;
+        document.getElementById('domain-text').innerText = window.location.hostname;
     </script>
-
 </body>
 </html>
