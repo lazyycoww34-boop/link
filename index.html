@@ -2,135 +2,116 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aisha Socuty</title>
     <style>
-        body, html {
+        body {
             margin: 0;
             padding: 0;
-            width: 100%;
-            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #ffffff;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            overflow: hidden;
-        }
-
-        /* Центруємо весь контент */
-        .wrapper {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             height: 100vh;
-            text-align: left;
-            position: relative;
+            color: #000;
+        }
+
+        /* Верхня панель імітації браузера */
+        .header {
+            width: 100%;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            color: #8e8e8e;
         }
 
         .content {
-            z-index: 2;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 100px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
         }
 
-        /* Стилізація тексту як на скріншоті */
         h1 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 900;
+            margin-bottom: 40px;
             text-transform: uppercase;
-            margin: 10px 0;
-            color: #000;
-            letter-spacing: -1px;
         }
 
-        /* Імітація меню, що випадає (пункт 2) */
         .menu-mockup {
-            margin-top: 30px;
-            text-align: left;
-            width: 250px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
         }
 
         .menu-item {
             display: flex;
             align-items: center;
-            padding: 10px 0;
-            font-size: 16px;
-            color: #000;
-            font-weight: 500;
+            padding: 15px 0;
+            font-size: 18px;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .menu-item img {
+        .icon {
+            margin-right: 15px;
             width: 20px;
-            margin-right: 10px;
-            opacity: 0.7;
-        }
-
-        /* Малюємо вигнуту стрілку */
-        .arrow {
-            position: absolute;
-            top: 50px; /* Приблизно де знаходяться три крапки в ТТ */
-            right: 40px;
-            width: 120px;
-            transform: rotate(-10deg);
-            z-index: 1;
-        }
-
-        /* Ховаємо контент для звичайних браузерів */
-        #normal-browser {
-            display: none;
             text-align: center;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 18px 40px;
-            background: #000;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 18px;
+        /* Стрілка */
+        .arrow {
+            position: absolute;
+            right: 0;
+            top: 60px;
+            width: 120px;
+            transform: rotate(-10deg);
+        }
+
+        .dots {
+            font-size: 24px;
+            letter-spacing: 2px;
         }
     </style>
 </head>
 <body>
 
-<div class="wrapper" id="tiktok-notice" style="display: none;">
-    <svg class="arrow" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 90C40 80 70 50 85 10" stroke="black" stroke-width="3" stroke-linecap="round"/>
-        <path d="M75 15L85 10L88 22" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+    <div class="header">
+        <span>&lsaquo;</span>
+        <span>&times;</span>
+        <span>aishasocuty.com</span>
+        <span class="dots">•••</span>
+    </div>
 
     <div class="content">
-        <h1>1. Натисни на •••</h1>
+        <h1>1. CLICK ON <span class="dots">•••</span></h1>
         
         <div class="menu-mockup">
-            <div class="menu-item" style="opacity: 0.4;">🚩 Поскаржитися</div>
-            <h1>2. <span style="font-size: 32px;">🧭</span> Open in browser</h1>
-            <div class="menu-item" style="opacity: 0.4;">🔗 Копіювати посилання</div>
+            <div class="menu-item" style="color: #8e8e8e;">
+                <span class="icon">🏳</span> Report
+            </div>
+            <div class="menu-item" style="font-weight: 600;">
+                <span class="icon">🧭</span> 2. Open in browser
+            </div>
+            <div class="menu-item" style="color: #8e8e8e;">
+                <span class="icon">🔗</span> Copy link
+            </div>
         </div>
+
+        <svg class="arrow" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 80C40 70 70 40 85 15" stroke="black" stroke-width="3" stroke-linecap="round"/>
+            <path d="M70 20L85 15L88 32" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
     </div>
-</div>
-
-<div class="wrapper" id="normal-browser">
-    <h1>Welcome!</h1>
-    <p>Ви перейшли у зовнішній браузер.</p>
-    <a href="https://t.me/+XBZ9wifxqug2YTVi" class="btn">GO TO SHOP</a>
-</div>
-
-<script>
-    function checkBrowser() {
-        const ua = navigator.userAgent || navigator.vendor || window.opera;
-        const isTikTok = ua.indexOf("TikTok") > -1;
-
-        if (isTikTok) {
-            document.getElementById('tiktok-notice').style.display = 'flex';
-        } else {
-            // Якщо це не TikTok, показуємо кнопку або робимо редірект
-            document.getElementById('normal-browser').style.display = 'flex';
-            // Можна розкоментувати рядок нижче для авто-переходу:
-            // window.location.href = "https://t.me/+XBZ9wifxqug2YTVi";
-        }
-    }
-    checkBrowser();
-</script>
 
 </body>
 </html>
